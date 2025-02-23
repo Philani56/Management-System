@@ -1,0 +1,395 @@
+﻿@{
+    ViewData["Title"] = "Guides";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background-color: #2a2a3c;
+            border: none;
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        .container {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #ccc;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .modal-content {
+            background-color: #2a2a3c;
+            color: white;
+            border-radius: 15px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #444;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #444;
+        }
+
+        .close {
+            color: white;
+            opacity: 1;
+        }
+
+            .close:hover {
+                color: #ccc;
+            }
+
+        .guide-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .guide-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .guide-content {
+            flex: 1;
+        }
+
+            .guide-content h5 {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
+            .guide-content p {
+                font-size: 0.9rem;
+                color: #ccc;
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-5">Guide</h2>
+        <p>Read through the following guides.</p>
+        <div class="row g-4">
+            <!-- Employee Onboarding Guide -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center p-4 rounded" data-toggle="modal" data-target="#onboardingModal">
+                    <div class="feature-icon bg-primary text-white">
+                        <i class="fas fa-user-plus fa-2x"></i>
+                    </div>
+                    <h3 class="h5 mt-3">Employee Onboarding Guide</h3>
+                </div>
+            </div>
+
+            <!-- Employee Management Guide -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center p-4 rounded" data-toggle="modal" data-target="#managementModal">
+                    <div class="feature-icon bg-success text-white">
+                        <i class="fas fa-user-cog fa-2x"></i>
+                    </div>
+                    <h3 class="h5 mt-3">Employee Management Guide</h3>
+                </div>
+            </div>
+
+            <!-- Leave Management Guide -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center p-4 rounded" data-toggle="modal" data-target="#leaveModal">
+                    <div class="feature-icon bg-warning text-dark">
+                        <i class="fas fa-calendar-alt fa-2x"></i>
+                    </div>
+                    <h3 class="h5 mt-3">Leave Management Guide</h3>
+                </div>
+            </div>
+
+            <!-- Payroll Management Guide -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center p-4 rounded" data-toggle="modal" data-target="#payrollModal">
+                    <div class="feature-icon bg-danger text-white">
+                        <i class="fas fa-money-check-alt fa-2x"></i>
+                    </div>
+                    <h3 class="h5 mt-3">Payroll Management Guide</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Employee Onboarding Modal -->
+    <div class="modal fade" id="onboardingModal" tabindex="-1" aria-labelledby="onboardingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="onboardingModalLabel">Employee Onboarding Guide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="guide-step">
+                        <div class="guide-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 1: Create Employee Profile</h5>
+                            <p>Add the new employee's personal and professional details to the system.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 2: Complete Documentation</h5>
+                            <p>Ensure all required documents (e.g., contracts, tax forms) are signed and uploaded.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 3: Set Up Tools</h5>
+                            <p>Provide access to company tools (e.g., email, project management software).</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 4: Conduct Orientation</h5>
+                            <p>Schedule an orientation session to introduce the employee to company policies and culture.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Employee Management Modal -->
+    <div class="modal fade" id="managementModal" tabindex="-1" aria-labelledby="managementModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="managementModalLabel">Employee Management Guide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #28a745;">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 1: Update Employee Details</h5>
+                            <p>Keep employee records up-to-date with accurate personal and professional information.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #28a745;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 2: Track Performance</h5>
+                            <p>Monitor employee performance using KPIs and regular reviews.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #28a745;">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 3: Handle Promotions</h5>
+                            <p>Process promotions and role changes based on performance and company needs.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #28a745;">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 4: Manage Teams</h5>
+                            <p>Organize employees into teams and assign roles and responsibilities.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leave Management Modal -->
+    <div class="modal fade" id="leaveModal" tabindex="-1" aria-labelledby="leaveModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="leaveModalLabel">Leave Management Guide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #ffc107;">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 1: Submit Leave Request</h5>
+                            <p>Employees can submit leave requests through the system with details like dates and reason.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #ffc107;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 2: Approve or Reject</h5>
+                            <p>Managers can review and approve/reject leave requests based on team availability.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #ffc107;">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 3: Track Leave Balances</h5>
+                            <p>Monitor remaining leave balances for each employee to ensure compliance with policies.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #ffc107;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 4: Generate Reports</h5>
+                            <p>Generate leave reports for payroll and compliance purposes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payroll Management Modal -->
+    <div class="modal fade" id="payrollModal" tabindex="-1" aria-labelledby="payrollModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payrollModalLabel">Payroll Management Guide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #dc3545;">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 1: Collect Employee Data</h5>
+                            <p>Gather employee details such as working hours, overtime, and deductions.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #dc3545;">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 2: Calculate Gross Salary</h5>
+                            <p>Compute gross salary based on hours worked, overtime, and bonuses.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #dc3545;">
+                            <i class="fas fa-percent"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 3: Deduct Taxes and Contributions</h5>
+                            <p>Subtract taxes, UIF, and other statutory deductions from the gross salary.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="guide-icon" style="background-color: #dc3545;">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="guide-content">
+                            <h5>Step 4: Process Payments</h5>
+                            <p>Transfer net salaries to employees' bank accounts and generate payslips.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

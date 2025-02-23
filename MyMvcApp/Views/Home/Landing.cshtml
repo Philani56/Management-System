@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Landing Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .left-section {
+            flex: 1;
+            background-color: #6a11cb;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+            .left-section h1 {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .left-section p {
+                font-size: 1.1rem;
+                color: #bdc3c7;
+                max-width: 400px;
+            }
+
+        .right-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .login-options {
+            text-align: center;
+            max-width: 300px;
+        }
+
+            .login-options h2 {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                color: #2c3e50;
+            }
+
+        .login-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .admin-btn {
+            background-color: #34495e;
+            color: white;
+        }
+
+            .admin-btn:hover {
+                background-color: #2c3e50;
+                transform: translateY(-3px);
+            }
+
+        .employee-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+            .employee-btn:hover {
+                background-color: #2980b9;
+                transform: translateY(-3px);
+            }
+
+        .logo {
+            width: 400px; /* Increased logo size */
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem; /* Move to the right */
+            left: auto; /* Reset left */
+            transform: none; /* Remove centering */
+            font-size: 0.9rem;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Left Section: Branding and Description -->
+    <div class="left-section">
+        <img src="/images/logo.png" alt="Company Logo" class="logo"> <!-- Updated logo path -->
+        <h1>Employee Management System</h1>
+        <p>Streamline your workforce management with our advanced system. Efficient, reliable, and secure.</p>
+    </div>
+
+    <!-- Right Section: Login Options -->
+    <div class="right-section">
+        <div class="login-options">
+            <h2>Welcome Back</h2>
+            <button class="login-btn admin-btn" onclick="window.location.href='@Url.Action("Login", "Account")'">
+                <i class="fas fa-user-shield"></i> Admin Login
+            </button>
+            <button class="login-btn employee-btn" onclick="window.location.href='@Url.Action("Registration", "RegisterLogin")'">
+                <i class="fas fa-user-tie"></i> Employee Login
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; Designed and Developed by <a href="https://www.linkedin.com/in/nhlakanipho-philani-khumalo-679726224/">Nhlakanipho Philani Khumalo</a></p>
+    </div>
+</body>
+</html>

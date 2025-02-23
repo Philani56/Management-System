@@ -1,0 +1,273 @@
+﻿@model MyMvcApp.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="underlined-heading">Create Employee</h1>
+    <p>Please fill out the form below to add a new employee to the system. Ensure all required fields are completed accurately. If you have any questions, refer to the employee onboarding guide or contact HR for assistance.</p>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" class="compact-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Personal Information Section -->
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    <strong>Personal Information</strong>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="EmployeeID" class="control-label"></label>
+                            <input asp-for="EmployeeID" class="form-control" />
+                            <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="FirstName" class="control-label"></label>
+                            <input asp-for="FirstName" class="form-control form-control-sm" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="MiddleName" class="control-label"></label>
+                            <input asp-for="MiddleName" class="form-control form-control-sm" />
+                            <span asp-validation-for="MiddleName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="LastName" class="control-label"></label>
+                            <input asp-for="LastName" class="form-control form-control-sm" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DateOfBirth" class="control-label"></label>
+                            <input asp-for="DateOfBirth" type="date" class="form-control form-control-sm" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Gender" class="control-label"></label>
+                            <select asp-for="Gender" class="form-control form-control-sm">
+                                <option value="">-- Select Gender --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Nationality" class="control-label"></label>
+                            <select asp-for="Nationality" class="form-control form-control-sm">
+                                <option value="">-- Select Nationality --</option>
+                                <option value="South African">South African</option>
+                                <option value="American">American</option>
+                                <option value="British">British</option>
+                                <option value="Canadian">Canadian</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Nigerian">Nigerian</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="German">German</option>
+                                <option value="French">French</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Nationality" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="MaritalStatus" class="control-label"></label>
+                            <select asp-for="MaritalStatus" class="form-control form-control-sm">
+                                <option value="">-- Select Marital Status --</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Widowed">Widowed</option>
+                            </select>
+                            <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="card mb-3">
+                <div class="card-header bg-success text-white">
+                    <strong>Contact Information</strong>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="PhoneNumber" class="control-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control form-control-sm" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="EmailAddress" class="control-label"></label>
+                            <input asp-for="EmailAddress" class="form-control form-control-sm" />
+                            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ResidentialAddress" class="control-label"></label>
+                        <input asp-for="ResidentialAddress" class="form-control form-control-sm" />
+                        <span asp-validation-for="ResidentialAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label asp-for="EmergencyContactName" class="control-label"></label>
+                            <input asp-for="EmergencyContactName" class="form-control form-control-sm" />
+                            <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="EmergencyContactRelationship" class="control-label"></label>
+                            <input asp-for="EmergencyContactRelationship" class="form-control form-control-sm" />
+                            <span asp-validation-for="EmergencyContactRelationship" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="EmergencyContactPhone" class="control-label"></label>
+                            <input asp-for="EmergencyContactPhone" class="form-control form-control-sm" />
+                            <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee Information Section -->
+            <div class="card mb-3">
+                <div class="card-header bg-info text-white">
+                    <strong>Employee Information</strong>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="JobTitle" class="control-label"></label>
+                            <input asp-for="JobTitle" class="form-control form-control-sm" />
+                            <span asp-validation-for="JobTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Department" class="control-label"></label>
+                            <select asp-for="Department" class="form-control form-control-sm">
+                                <option value="">-- Select Department --</option>
+                                <option value="IT">IT</option>
+                                <option value="HR">HR</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Marketing">Marketing</option>
+                            </select>
+                            <span asp-validation-for="Department" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="EmploymentType" class="control-label"></label>
+                            <select asp-for="EmploymentType" class="form-control form-control-sm">
+                                <option value="">-- Select Employment Type --</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                            </select>
+                            <span asp-validation-for="EmploymentType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="DateOfHire" class="control-label"></label>
+                            <input asp-for="DateOfHire" type="date" class="form-control form-control-sm" />
+                            <span asp-validation-for="DateOfHire" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="WorkLocation" class="control-label"></label>
+                            <select asp-for="WorkLocation" class="form-control form-control-sm">
+                                <option value="">-- Select Work Location --</option>
+                                <option value="Office">Office</option>
+                                <option value="Remote">Remote</option>
+                                <option value="Hybrid">Hybrid</option>
+                            </select>
+                            <span asp-validation-for="WorkLocation" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="SupervisorName" class="control-label"></label>
+                            <input asp-for="SupervisorName" class="form-control form-control-sm" />
+                            <span asp-validation-for="SupervisorName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProbationPeriod" class="control-label"></label>
+                        <input asp-for="ProbationPeriod" type="number" class="form-control form-control-sm" />
+                        <span asp-validation-for="ProbationPeriod" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group d-flex justify-content-end gap-2">
+                <input type="submit" value="Create" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm" />
+                <button onclick="window.location.href='@Url.Action("Index", "Home")'" class="btn btn-outline-secondary btn-sm rounded-pill px-4 shadow-sm">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .compact-form .form-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .compact-form .form-control-sm {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .compact-form .btn-sm {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .compact-form label {
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .compact-form .form-row {
+        margin-bottom: 0.5rem;
+    }
+
+    .card-header {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .underlined-heading {
+        display: inline-block; /* Ensures the underline only spans the text */
+        padding-bottom: 5px; /* Space between text and underline */
+        border-bottom: 3px solid #007bff; /* Underline color and thickness */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+    }
+</style>

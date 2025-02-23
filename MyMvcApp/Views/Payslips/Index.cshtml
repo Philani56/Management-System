@@ -1,0 +1,156 @@
+﻿@model IEnumerable<MyMvcApp.Models.Payslip>
+
+@{
+    ViewData["Title"] = "Payslip Search";
+    Layout = "~/Views/Shared/_ViewStart.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Header and Search Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h3 class="underlined-heading">Payslip</h3>
+            <p class="text-muted mb-0">Enter your employee number to view your payslip.</p>
+        </div>
+        <!-- Back Button -->
+        <div>
+            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary btn-sm rounded-pill">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <form id="searchForm" method="get" asp-action="Search">
+                <div class="input-group">
+                    <input type="text" id="employeeCode" name="employeeCode" class="form-control form-control-sm rounded-pill shadow-sm" placeholder="Enter Employee Code" required />
+                    <button type="submit" class="btn btn-primary btn-sm rounded-pill ms-2">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payslip Table (Displayed only if a payslip is found) -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-sm table-hover table-bordered">
+                <thead class="thead-custom">
+                    <tr>
+                        <th class="border-end">Employee Code</th>
+                        <th class="border-end">Employee Name</th>
+                        <th class="border-end">Payment Date</th>
+                        <th class="border-end">Company Name</th>
+                        <th class="border-end">Salary</th>
+                        <th class="border-end">UIF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="border-end">@Html.DisplayFor(modelItem => item.EmployeeCode)</td>
+                            <td class="border-end">@Html.DisplayFor(modelItem => item.EmployeeName)</td>
+                            <td class="border-end">@Html.DisplayFor(modelItem => item.PaymentDate)</td>
+                            <td class="border-end">@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                            <td class="border-end">@Html.DisplayFor(modelItem => item.Salary)</td>
+                            <td class="border-end">@Html.DisplayFor(modelItem => item.UIF)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else if (ViewBag.EmployeeCode != null)
+    {
+        <div class="alert alert-warning mt-3">
+            No payslip found for employee code: <strong>@ViewBag.EmployeeCode</strong>
+        </div>
+    }
+</div>
+
+<!-- Custom CSS for Sleek Design -->
+<style>
+    /* Table Styling */
+    .table {
+        font-size: 0.75rem; /* Smaller font size */
+        width: 100%; /* Ensure table fits the container */
+        border-collapse: collapse; /* Collapse borders for clean lines */
+    }
+
+        .table th, .table td {
+            padding: 0.5rem; /* Compact padding */
+            border: 1px solid #dee2e6; /* Light borders */
+        }
+
+        .table thead th {
+            background-color: #4e73df; /* Modern blue header */
+            color: #fff; /* White text */
+            font-weight: 600;
+            border: 1px solid #4e73df; /* Match header border color */
+        }
+
+        .table tbody tr {
+            background-color: #fff; /* White row background */
+        }
+
+            .table tbody tr:hover {
+                background-color: #f8f9fa; /* Light hover effect */
+            }
+
+    /* Vertical Lines (Borders between columns) */
+    .border-end {
+        border-right: 1px solid #dee2e6; /* Light vertical lines */
+    }
+
+    /* Search Bar Styling */
+    #employeeCode {
+        border: 1px solid #ddd; /* Light border */
+        transition: all 0.3s ease;
+    }
+
+        #employeeCode:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+        }
+
+    /* Button Styling */
+    .btn-sm {
+        font-size: 0.75rem; /* Smaller button text */
+        padding: 0.25rem 0.5rem; /* Compact padding */
+    }
+
+    .rounded-pill {
+        border-radius: 50px; /* Pill-shaped buttons */
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Gray color for the back button */
+        border-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker gray on hover */
+            border-color: #545b62;
+        }
+
+    /* Header and Paragraph Styling */
+    h1 {
+        color: #4e73df; /* Modern blue */
+        font-weight: 700;
+    }
+
+    .text-muted {
+        color: #6c757d; /* Gray text for paragraph */
+    }
+
+    .underlined-heading {
+        display: inline-block; /* Ensures the underline only spans the text */
+        padding-bottom: 5px; /* Space between text and underline */
+        border-bottom: 3px solid #007bff; /* Underline color and thickness */
+    }
+</style>

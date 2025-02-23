@@ -1,0 +1,222 @@
+﻿@model MyMvcApp.Models.Leave
+
+@{
+    ViewData["Title"] = "Edit Leave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h3 class="underlined-heading">Update Leave</h3>
+            <p class="text-muted mb-3">Update the leave request details below. Ensure all required fields are filled accurately. If you have any questions, refer to the leave management guide or contact HR for assistance.</p>
+
+            <form asp-action="Edit" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="LeaveId" />
+
+                <!-- Leave Details Section -->
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <strong>Leave Details</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="EmployeeName" class="form-label">Employee Name</label>
+                                    <input asp-for="EmployeeName" class="form-control form-control-sm" />
+                                    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="LeaveType" class="form-label">Leave Type</label>
+                                    <input asp-for="LeaveType" class="form-control form-control-sm" />
+                                    <span asp-validation-for="LeaveType" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="StartDate" class="form-label">Start Date</label>
+                                    <input asp-for="StartDate" type="date" class="form-control form-control-sm" />
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="EndDate" class="form-label">End Date</label>
+                                    <input asp-for="EndDate" type="date" class="form-control form-control-sm" />
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Reason" class="form-label">Reason</label>
+                                    <textarea asp-for="Reason" class="form-control form-control-sm" rows="3"></textarea>
+                                    <span asp-validation-for="Reason" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Approval Details Section -->
+                <div class="card mb-3">
+                    <div class="card-header bg-success text-white">
+                        <strong>Approval Details</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Status" class="form-label">Status</label>
+                                    <select asp-for="Status" class="form-control form-control-sm">
+                                        <option value="">-- Select Status --</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                    <span asp-validation-for="Status" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ApprovedBy" class="form-label">Approved By</label>
+                                    <input asp-for="ApprovedBy" class="form-control form-control-sm" />
+                                    <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="RequestDate" class="form-label">Request Date</label>
+                                    <input asp-for="RequestDate" type="date" class="form-control form-control-sm" />
+                                    <span asp-validation-for="RequestDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Comments" class="form-label">Comments</label>
+                                    <textarea asp-for="Comments" class="form-control form-control-sm" rows="3"></textarea>
+                                    <span asp-validation-for="Comments" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="form-group text-end">
+                    <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm rounded-pill px-4">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <!-- SweetAlert2 Script -->
+    <script>
+        $(document).ready(function () {
+            // Intercept form submission
+            $('form').on('submit', function (e) {
+                e.preventDefault(); // Prevent default form submission
+
+                var form = $(this);
+                var url = form.attr('action');
+                var data = form.serialize();
+
+                // Submit form via AJAX
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function (response) {
+                        if (response.success) {
+                            // Show success popup
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.message,
+                                confirmButtonColor: '#4e73df',
+                                timer: 3000, // Auto-close after 3 seconds
+                                timerProgressBar: true
+                            }).then(() => {
+                                // Redirect to the list page after the popup closes
+                                window.location.href = '@Url.Action("Index")';
+                            });
+                        } else {
+                            // Show error message if the submission fails
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: response.message,
+                                confirmButtonColor: '#4e73df'
+                            });
+                        }
+                    },
+                    error: function () {
+                        // Handle AJAX errors
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'An error occurred while submitting the form.',
+                            confirmButtonColor: '#4e73df'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<!-- Custom CSS for Sleek Design -->
+<style>
+    .card {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+    }
+
+    .card-header {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .form-control-sm {
+        font-size: 0.875rem;
+    }
+
+    .form-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .btn-sm {
+        font-size: 0.875rem;
+    }
+
+    .rounded-pill {
+        border-radius: 50px;
+    }
+
+    .underlined-heading {
+        display: inline-block; /* Ensures the underline only spans the text */
+        padding-bottom: 5px; /* Space between text and underline */
+        border-bottom: 3px solid #007bff; /* Underline color and thickness */
+    }
+</style>

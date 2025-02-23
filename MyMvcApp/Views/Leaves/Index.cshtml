@@ -1,0 +1,116 @@
+﻿@model IEnumerable<MyMvcApp.Models.Leave>
+
+@{
+    ViewData["Title"] = "Leave Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-4" style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">Leave Requests</h3>
+<p class="lead text-muted">
+    Below is a list of all leave requests submitted by employees. You can review the details, approve, reject, or update each request as needed. Ensure all actions are taken promptly to maintain workflow efficiency.
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">@Html.DisplayFor(modelItem => item.EmployeeName)</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">
+                        <strong>Start Date:</strong> @Html.DisplayFor(modelItem => item.StartDate)<br>
+                        <strong>End Date:</strong> @Html.DisplayFor(modelItem => item.EndDate)<br>
+                        <strong>Leave Type:</strong> @Html.DisplayFor(modelItem => item.LeaveType)<br>
+                        <strong>Reason:</strong> @Html.DisplayFor(modelItem => item.Reason)<br>
+                        <strong>Request Date:</strong> @Html.DisplayFor(modelItem => item.RequestDate)<br>
+                        <strong>Approved By:</strong> @Html.DisplayFor(modelItem => item.ApprovedBy)<br>
+                        <strong>Comments:</strong> @Html.DisplayFor(modelItem => item.Comments)
+                    </p>
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge
+                            @(item.Status == "Approved" ? "badge-approved" :
+                              item.Status == "Pending" ? "badge-pending" :
+                              item.Status == "Rejected" ? "badge-rejected" : "badge-secondary")">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </span>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@item.LeaveId" class="btn btn-sm btn-outline-primary">Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    /* Custom Badge Colors */
+    .badge-approved {
+        background-color: #28a745; /* Green for Approved */
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .badge-pending {
+        background-color: #ffc107; /* Yellow for Pending */
+        color: black;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .badge-rejected {
+        background-color: #dc3545; /* Red for Rejected */
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    /* Card Hover Effect */
+    .card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Button Styles */
+    .btn-outline-primary {
+        border-color: #007bff;
+        color: #007bff;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+    .btn-outline-info {
+        border-color: #17a2b8;
+        color: #17a2b8;
+    }
+
+        .btn-outline-info:hover {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+    .btn-outline-danger {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+</style>
